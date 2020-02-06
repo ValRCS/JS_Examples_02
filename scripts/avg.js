@@ -42,6 +42,7 @@ myParagraph.textContent = `Average throw value is ${myParagraph.myResult}`;
 // const myButton = document.querySelector(".pretty-button");
 // const myButton = document.querySelector("button");
 const myButton = document.querySelector("#submitBtn");
+const delButton = document.querySelector("#deleteBtn");
 //const myButton = document.getElementById("submitBtn");
 // there is also document.getElementsByClassName
 //document.getElementsByTagName
@@ -58,14 +59,36 @@ function onButtonClick() {
     console.log(`My value is ${myInput.value}`);
     let nThrows = myInput.value;
     let result = getAverage(nThrows);
-    myParagraph.textContent = `Average throw value is ${result}`;
 
-    let red = Math.floor(Math.random() * 256);
-    document.body.style.backgroundColor = `rgb(${red}, 128, 128)`;
+    // let red = Math.floor(Math.random() * 256);
+    // document.body.style.backgroundColor = `rgb(${red}, 128, 128)`;
+    let resultsCont = document.querySelector(".results-cont");
+
+    //append new result in a new paragraph
+    const newP = document.createElement("p");
+    newP.textContent = `Throws: ${nThrows} Average: ${result}`;
+    resultsCont.appendChild(newP);
+    // document.body.appendChild(newP);
+}
+
+function onDelete() {
+    console.log("On delete");
+    let element = document.querySelector(".results-cont");
+    // from https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+    //while there are any children remove them!
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+function onChangeBtnClick() {
+    console.log("Clicked change button!");
 }
 
 //can only have one click
-myButton.click = onButtonClick;
+myButton.onclick = onButtonClick;
+delButton.onclick = onDelete;
+document.querySelector("#changeBtn").onclick = onChangeBtnClick;
 //can have many additional events handled by addEventListener
 // myButton.addEventListener("click", onButtonClick);
 
