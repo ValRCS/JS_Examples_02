@@ -5,12 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Document</title>
+        <link rel="stylesheet" href="styles/avg.css" />
         <script src="scripts/avg.js" defer></script>
     </head>
     <body>
         <h1>Average of throw calculator</h1>
         <p id="answer"></p>
-        <input type="number" name="numthrows" id="throwInput" />
-        <button id="submit">New Calculation</button>
+        <input
+            type="number"
+            class="num-input"
+            name="numthrows"
+            id="throwInput"
+            value="100"
+        />
+        <button class="pretty-button" id="submitBtn">New Calculation</button>
     </body>
 </html>
