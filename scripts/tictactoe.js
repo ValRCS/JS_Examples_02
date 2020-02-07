@@ -3,8 +3,9 @@ console.log("Started TicTacToe");
 //same as above
 const squares = document.getElementsByClassName("square");
 const status = document.getElementById("game-status");
+const reset = document.getElementById("reset-btn");
 let turn = "Player A";
-const boardState = [
+let boardState = [
     0, 0, 0,
     0, 0, 0,
     0, 0, 0
@@ -61,14 +62,34 @@ function onClick(event) {
     if (turn === "Player A") {
         sq.textContent = "X";
         boardState[ndx] = 1;
+        sq.classList.add("x-sq");
         turn = "Player B";
     } else {
         sq.textContent = "O";
         boardState[ndx] = -1;
+        sq.classList.add("o-sq");
         turn = "Player A";
     }
 
 
+    renderGame();
+}
+
+function onReset() {
+    console.log("Resetting Game");
+    turn = "Player A";
+    boardState = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ];
+    winner = "";
+    for (let i = 0; i < squares.length; i++) {
+        const sq = squares[i];
+        sq.textContent = "";
+        sq.classList.remove("o-sq");
+        sq.classList.remove("x-sq");
+    }
     renderGame();
 }
 
@@ -82,11 +103,14 @@ function addListeners() {
         sq.setAttribute("data-value", i);
         sq.addEventListener("click", onClick);
     }
+    //TODO add listener to reset button
+    reset.addEventListener("click", onReset);
 }
 
 function main() {
     console.log("Running Main");
     addListeners();
+    renderGame();
 }
 
 main();
