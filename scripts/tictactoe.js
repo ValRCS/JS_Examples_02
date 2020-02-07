@@ -4,6 +4,11 @@ console.log("Started TicTacToe");
 const squares = document.getElementsByClassName("square");
 const status = document.getElementById("game-status");
 let turn = "Player A";
+const boardState = [
+    0, 0, 0,
+    0, 0, 0, 
+    0, 0, 0
+];
 
 function renderGame() {
     status.textContent = `${turn} goes now`;
@@ -12,15 +17,18 @@ function renderGame() {
 
 function onClick(event) {
     console.log("Event of type", event.type);
-    console.log("My id is", event.currentTarget.id);
+    const sq = event.currentTarget;
+    console.log("My id is", sq.id);
     //this gets us the last character
-    console.log("My number is", event.currentTarget.id.slice(-1));
+    console.log("My number is", sq.id.slice(-1));
     //this gets us whatever is after - in id
-    console.log("My number is", event.currentTarget.id.split("-")[1]);
+    console.log("My number is", sq.id.split("-")[1]);
 
     if (turn === "Player A") {
+        sq.textContent = "X";
         turn = "Player B";
     } else {
+        sq.textContent = "O";
         turn = "Player A";
     }
     renderGame();
