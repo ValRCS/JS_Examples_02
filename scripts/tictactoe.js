@@ -4,13 +4,14 @@ console.log("Started TicTacToe");
 const squares = document.getElementsByClassName("square");
 const status = document.getElementById("game-status");
 const reset = document.getElementById("reset-btn");
-let turn = "Player A";
+let turnName = "Player A";
 let boardState = [
     0, 0, 0,
     0, 0, 0,
     0, 0, 0
 ];
 let winner = "";
+let turn = 1;
 
 function renderGame() {
 
@@ -27,7 +28,7 @@ function renderGame() {
         b[2] + b[4] + b[6] === 3
     ) {
         winner = "Player A";
-        status.textContent = `${winner} has won!`;
+        status.textContent = `${winner} has won after ${turn - 1} turns!`;
     } else if (b[0] + b[1] + b[2] === -3 ||
         b[3] + b[4] + b[5] === -3 ||
         b[6] + b[7] + b[8] === -3 ||
@@ -38,9 +39,11 @@ function renderGame() {
         b[2] + b[4] + b[6] === -3
     ) {
         winner = "Player B";
-        status.textContent = `${winner} has won!`;
+        status.textContent = `${winner} has won after ${turn - 1} turns!`;
+    } else if (turn > 9) {
+        status.textContent = `Game is Drawn after ${turn - 1} turns`;
     } else {
-        status.textContent = `${turn} goes now`;
+        status.textContent = `Turn:${turn} ${turnName} goes now`;
     }
 }
 
@@ -58,17 +61,17 @@ function onClick(event) {
 
     if (boardState[ndx] !== 0) return; //we do nothing if there is something  
 
-
-    if (turn === "Player A") {
+    turn++;
+    if (turnName === "Player A") {
         sq.textContent = "X";
         boardState[ndx] = 1;
         sq.classList.add("x-sq");
-        turn = "Player B";
+        turnName = "Player B";
     } else {
         sq.textContent = "O";
         boardState[ndx] = -1;
         sq.classList.add("o-sq");
-        turn = "Player A";
+        turnName = "Player A";
     }
 
 
@@ -77,13 +80,14 @@ function onClick(event) {
 
 function onReset() {
     console.log("Resetting Game");
-    turn = "Player A";
+    turnName = "Player A";
     boardState = [
         0, 0, 0,
         0, 0, 0,
         0, 0, 0
     ];
     winner = "";
+    turn = 1;
     for (let i = 0; i < squares.length; i++) {
         const sq = squares[i];
         sq.textContent = "";
