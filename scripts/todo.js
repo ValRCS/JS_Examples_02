@@ -36,6 +36,13 @@ function render() {
         console.log("Adding job with id:", jobs[i].id);
         createSingleJob(jobsCont, jobs[i]);
     }
+
+    $('span').addClass('my-spans').css('background-color', 'red');
+    const mySpans = document.querySelectorAll('span');
+    for (let i = 0; i < mySpans.length; i++) {
+        mySpans[i].classList.add('also-span-class');
+    }
+
 }
 
 function onDeleteCurrent(event) {
