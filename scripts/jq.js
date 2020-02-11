@@ -22,4 +22,11 @@ function main() {
     document.querySelectorAll('.btn-secondary').forEach((el) => {
         el.parentNode.removeChild(el);
     });
+
+    $('#clone-me')
+        .clone()
+        .prop('id', 'clone2')
+        .addClass('cool-class')
+        .text('New Text')
+        .appendTo('.new-parent');
 }
