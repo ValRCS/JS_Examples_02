@@ -17,7 +17,21 @@
         Hello {{ message }}
         <p>The number is {{ mynum }}</p>
         <!-- <p>The bad number is {{ notmynum }}</p> -->
-
+        <p title="what we see on hover">My text</p>
+        <p v-bind:title="mydate">Title Bind Example</p>
+        <hr>
+        <span v-if="seen">Now you see me</span>
+        <hr>
+        <ol>
+            <li v-for="mytodo in todos">
+                {{ mytodo.text }}
+            </li>
+        </ol>
+        <ul>
+            <li v-for="job in jobs">
+                Job: {{ job }}
+            </li>
+        </ul>
     </div>
     <footer>C 2020</footer>
 </body>
