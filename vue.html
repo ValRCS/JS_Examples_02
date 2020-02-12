@@ -15,6 +15,8 @@
     <hr>
     <div class="main-cont" id="app">
         Hello {{ message }}
+        <hr>
+        <input v-model="message">
         <p>The number is {{ mynum }}</p>
         <!-- <p>The bad number is {{ notmynum }}</p> -->
         <p title="what we see on hover">My text</p>
@@ -32,6 +34,7 @@
                 Job: {{ job }}
             </li>
         </ul>
+        <button v-on:click="reverseMessage">Reverse Message</button>
     </div>
     <footer>C 2020</footer>
 </body>

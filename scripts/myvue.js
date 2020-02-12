@@ -18,5 +18,10 @@ const app = new Vue({
             "Buy potatoes",
             "Clean the garage!"
         ]
+    },
+    methods: {
+        reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('')
+        }
     }
 })
