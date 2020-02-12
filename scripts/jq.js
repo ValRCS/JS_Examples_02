@@ -1,3 +1,5 @@
+let myGlobal = 0;
+
 
 
 $(document).ready(function () {
