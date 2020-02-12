@@ -35,6 +35,12 @@
                 Job: {{ job }}
             </li>
         </ul>
+        <ol>
+            <todo-item v-for="item in todos" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+        </ol>
+        <ul>
+            <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+        </ul>
         <button v-on:click="reverseMessage">Reverse Message</button>
     </div>
     <footer>C 2020</footer>
