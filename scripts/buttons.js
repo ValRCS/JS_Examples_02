@@ -1,6 +1,6 @@
 console.log("Started buttons.js");
 const config = {
-    timerSpeed: 200
+    timerSpeed: 50
 }
 const state = {
     cnt: 0,
@@ -26,6 +26,7 @@ const b3 = document.getElementById("b-3");
 const p1 = document.querySelector(".p-1");
 const p2 = document.querySelector(".p-2");
 const p3 = document.querySelector(".p-3");
+const p4 = document.querySelector(".p-4");
 console.log(state.cnt);
 p1.textContent = "P1: " + state.cnt;
 
@@ -66,6 +67,14 @@ function onMouseMove() {
     p3.textContent = "P3: " + state.mcnt;
 }
 b3.addEventListener("mousemove", onMouseMove);
+
+const area = document.querySelector("#my-area");
+
+area.addEventListener("mousemove", (event) => {
+    console.log("Moving mouse");
+    // p4.textContent = `X:(${window.screenX}) Y:(${window.screenY})`;
+    p4.textContent = `X:(${event.screenX}) Y:(${event.screenY})`;
+})
 
 
 
