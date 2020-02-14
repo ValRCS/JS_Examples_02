@@ -23,6 +23,8 @@ const b1 = document.querySelector("#b-1");
 const b2 = document.querySelector(".btn-2");
 const b3 = document.getElementById("b-3");
 
+const inp1 = document.querySelector(".inp-1")
+
 
 const p1 = document.querySelector(".p-1");
 const p2 = document.querySelector(".p-2");
@@ -32,6 +34,7 @@ const p4 = document.querySelector(".p-4");
 const genContainer = document.querySelector(".gen-cont");
 
 function generateButtons(cnt) {
+    cnt = parseInt(cnt);
     for (let i = 0; i < cnt; i++) {
         let btn = document.createElement('button');
         btn.id = "btn-" + (i + state.lastBtnId);
@@ -52,17 +55,12 @@ function generateButtons(cnt) {
     state.lastBtnId += cnt;
 }
 
-
-console.log(state.cnt);
-p1.textContent = "P1: " + state.cnt;
-
-//btns[0] is same as b1
-btns[0].addEventListener("click", () => {
-    console.log("Clicked old value", state.cnt);
-    state.cnt++;
-    console.log("Clicked new value", state.cnt);
+function init() {
+    console.log(state.cnt);
     p1.textContent = "P1: " + state.cnt;
-});
+    p2.textContent = "P2: " + state.quickcnt;
+    p3.textContent = "P3: " + state.mcnt;
+}
 
 function onTimerFire() {
     console.log("Timer Fired!");
@@ -70,33 +68,11 @@ function onTimerFire() {
     p2.textContent = "P2: " + state.quickcnt;
 }
 
-btns[1].addEventListener("mousedown", () => {
-    console.log("Starting timer!");
-    timer = setInterval(onTimerFire, config.timerSpeed); //so fire very 500ms
-})
-
-btns[1].addEventListener("mouseup", () => {
-    console.log("Mouse up, stopping timer!");
-    if (timer) clearInterval(timer);
-})
-
-// same as btns[2]
-// b3.addEventListener("mousemove", () => {
-//     console.log("Moving mouse");
-//     state.mctn++;
-//     p3.textContent = "P3: " + state.mcnt;
-// })
-
 function onMouseMove() {
     console.log("Moving mouse");
     state.mcnt++;
     p3.textContent = "P3: " + state.mcnt;
 }
-b3.addEventListener("mousemove", onMouseMove);
-
-
-
-
 
 function addEventListeners() {
     area.addEventListener("mousemove", (event) => {
@@ -105,9 +81,43 @@ function addEventListeners() {
         p4.textContent = `X:(${event.screenX}) Y:(${event.screenY})`;
     })
 
+    //btns[0] is same as b1
+    btns[0].addEventListener("click", () => {
+        console.log("Clicked old value", state.cnt);
+        state.cnt++;
+        console.log("Clicked new value", state.cnt);
+        p1.textContent = "P1: " + state.cnt;
+    });
 
+    //same as b2
+    btns[1].addEventListener("mousedown", () => {
+        console.log("Starting timer!");
+        timer = setInterval(onTimerFire, config.timerSpeed); //so fire very 500ms
+    })
+
+    btns[1].addEventListener("mouseup", () => {
+        console.log("Mouse up, stopping timer!");
+        if (timer) clearInterval(timer);
+    })
+
+    b3.addEventListener("mousemove", onMouseMove);
+
+    //button 4
+    btns[3].addEventListener("click", () => {
+        console.log("Will add value from text field:", inp1.value);
+        generateButtons(inp1.value);
+    })
+
+    //b5 really
     btns[4].addEventListener("click", () => {
         generateButtons(state.quickcnt);
     });
 }
 
+function main() {
+    console.log("Starting Main!");
+    init();
+    addEventListeners();
+}
+
+main();
