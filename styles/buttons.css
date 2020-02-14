@@ -1,3 +1,9 @@
 .btn-1 {
     background-color: orange;
 }
+
+.area {
+    width: 200px;
+    height: 200px;
+    background-color: papayawhip;
+}
